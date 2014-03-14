@@ -10,4 +10,14 @@ def one(limit)
   multiples.uniq.inject(:+)
 end
 
+def multiples_of(factor, limit)
+  i = factor
+  multiples = []
+  while i < limit
+    multiples << i
+    i += factor
+  end
+  multiples
+end
+
 p one(1000)

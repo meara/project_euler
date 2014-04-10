@@ -8,13 +8,28 @@
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 # find the sum of the even-valued terms.
 
-def even_fib_sum
-  fib0, fib1, sum = 1, 2, 2
-  while fib1 <= 4_000_000
-    fib0, fib1 = fib1, fib0 + fib1
+def even_fib_sum(limit)
+  fib0, fib1, sum = 1, 2, 0
+  while fib1 <= limit
     sum += fib1 if fib1 % 2 == 0
+    fib0, fib1 = fib1, fib0 + fib1
   end
   sum
 end
 
-p even_fib_sum
+# p even_fib_sum(4_000_000)
+
+describe 'even_fib_sum' do
+  it 'returns the correct sum for limit 10' do
+    sum = [2, 8].inject(:+)
+    expect(even_fib_sum(10)).to eq sum
+  end
+  it 'returns the correct sum for limit 100' do
+    sum = [2, 8, 34].inject(:+)
+    expect(even_fib_sum(100)).to eq sum
+  end
+  it 'returns the correct sum for limit 4_000_000' do
+    sum = 4613732
+    expect(even_fib_sum(4_000_000)).to eq sum
+  end
+end

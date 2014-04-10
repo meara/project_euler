@@ -15,9 +15,34 @@ def multiples_of(factor, limit)
   multiples = []
   while i < limit
     multiples << i
-    i += factor
+    i = i + factor
   end
   multiples
 end
 
-p one(1000)
+# p one(1000)
+
+describe 'multiples_of' do
+
+  it 'returns an array' do
+    expect(multiples_of(3, 7)).to be_an_instance_of(Array)
+  end
+
+  it 'array contains correct multiples' do
+    expect(multiples_of(3,7).sample % 3).to eq 0 
+  end
+
+  it 'returns only multiples under the limit' do
+    expect(multiples_of(3,7).max).to be < 7
+  end
+
+end
+
+
+describe 'one' do
+
+  it 'returns the correct sum' do
+    expect(one(10)).to be 23
+  end
+
+end
